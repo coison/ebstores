@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ebstores.iml" filepath="$PROJECT_DIR$/.idea/ebstores.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-bean-service/ebstores-bean-service.iml" filepath="$PROJECT_DIR$/ebstores-bean-service/ebstores-bean-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-center-core/ebstores-center-core.iml" filepath="$PROJECT_DIR$/ebstores-center-core/ebstores-center-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-common-service/ebstores-common-service.iml" filepath="$PROJECT_DIR$/ebstores-common-service/ebstores-common-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-goods-service/ebstores-goods-service.iml" filepath="$PROJECT_DIR$/ebstores-goods-service/ebstores-goods-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-members-service/ebstores-members-service.iml" filepath="$PROJECT_DIR$/ebstores-members-service/ebstores-members-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-order-service/ebstores-order-service.iml" filepath="$PROJECT_DIR$/ebstores-order-service/ebstores-order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-pay-service/ebstores-pay-service.iml" filepath="$PROJECT_DIR$/ebstores-pay-service/ebstores-pay-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-system-service/ebstores-system-service.iml" filepath="$PROJECT_DIR$/ebstores-system-service/ebstores-system-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-web-admin/ebstores-web-admin.iml" filepath="$PROJECT_DIR$/ebstores-web-admin/ebstores-web-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ebstores-web-swagger-ui/ebstores-web-swagger-ui.iml" filepath="$PROJECT_DIR$/ebstores-web-swagger-ui/ebstores-web-swagger-ui.iml" />
+    </modules>
+  </component>
+</project>

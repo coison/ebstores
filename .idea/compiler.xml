@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ebstore-model" />
+        <module name="ebstores-bean-service" />
+        <module name="ebstores-center-core" />
+        <module name="ebstores-common-service" />
+        <module name="ebstores-goods-service" />
+        <module name="ebstores-members-service" />
+        <module name="ebstores-order-service" />
+        <module name="ebstores-pay-service" />
+        <module name="ebstores-system-service" />
+        <module name="ebstores-web-admin" />
+        <module name="ebstores-web-swagger-ui" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ebstore-members-service" target="1.5" />
+      <module name="ebstore-model" target="1.5" />
+      <module name="ebstores-bean-service" target="1.5" />
+      <module name="ebstores-center-core" target="1.5" />
+      <module name="ebstores-common-service" target="1.5" />
+      <module name="ebstores-goods-service" target="1.5" />
+      <module name="ebstores-members-service" target="1.5" />
+      <module name="ebstores-order-service" target="1.5" />
+      <module name="ebstores-pay-service" target="1.5" />
+      <module name="ebstores-system-service" target="1.5" />
+      <module name="ebstores-web-admin" target="1.5" />
+      <module name="ebstores-web-swagger-ui" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
