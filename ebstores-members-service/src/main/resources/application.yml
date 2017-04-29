@@ -1,0 +1,42 @@
+# setting service
+server:
+  port: 8080
+# 项目信息
+info.verison: @project.version@
+info.owner: coison
+#    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
+#   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
+#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
+
+spring:
+  profiles:
+    active: dev
+debug: true
+
+---
+#开发环境
+spring:
+  profiles: dev
+  http:
+      encoding.charset: UTF-8
+      encoding.force: true
+      encoding:
+        enabled: true
+  application:
+      name: @project.description@
+  boot:
+      admin:
+        client:
+          enabled: true #启用Spring Boot Admin Client
+        url: http://localhost:8761 #注册中心地址
+        username: ${security.user.name}
+        password: ${security.user.password}
+security:
+  basic:
+    enabled: false #开启认证
+  user:
+    name: user
+    password: 123456
+management:
+  security:
+    enabled: false

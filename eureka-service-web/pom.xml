@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.coison</groupId>
-	<artifactId>ebstores-members-service</artifactId>
+	<groupId>com.coison.eureka</groupId>
+	<artifactId>eureka-service-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>ebstores-members-service</name>
+	<name>eureka-service-web</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -22,29 +22,57 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+
 		<spring-cloud.version>Dalston.RELEASE</spring-cloud.version>
+		<!-- spring boot admin 相关依赖jar -->
+		<spring-boot-admin.version>1.5.0</spring-boot-admin.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
-		<!-- spring boot admin client jar-->
-		<dependency>
-			<groupId>de.codecentric</groupId>
-			<artifactId>spring-boot-admin-starter-client</artifactId>
-			<version>1.5.0</version>
-		</dependency>
 		<!-- 用于注册中心访问账号认证 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!-- 用户测试的相关 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- spring boot admin 相关依赖jar -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server</artifactId>
+			<version>${spring-boot-admin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server-ui</artifactId>
+			<version>${spring-boot-admin.version}</version>
+		</dependency>
+		<!-- spring boot admin 登录UI模块 -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server-ui-login</artifactId>
+			<version>${spring-boot-admin.version}</version>
+		</dependency>
+		<!-- spring boot admin Activiti UI模块 -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server-ui-activiti</artifactId>
+			<version>${spring-boot-admin.version}</version>
+		</dependency>
+		<!-- 监控自己 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${spring-boot-admin.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -61,6 +89,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -68,13 +97,17 @@
 				<executions>
 					<execution>
 						<goals>
+							<goal>repackage</goal>
 							<goal>build-info</goal>
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<mainClass>com.coison.eureka.EurekaServiceApplication</mainClass>
+					<addResources>false</addResources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

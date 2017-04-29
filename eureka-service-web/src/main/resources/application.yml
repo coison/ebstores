@@ -1,0 +1,43 @@
+server:
+  port: 8761
+
+#    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
+#   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
+#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
+
+spring:
+  profiles:
+    active: dev
+debug: true
+
+---
+#测试环境
+spring:
+  profiles: dev
+  # HTTP ENCODING
+  http:
+     encoding.charset: UTF-8
+     encoding.force: true
+     encoding:
+      enabled: true
+  application:
+     name: spring boot admin
+  boot:
+    admin:
+      routes:
+        endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,activiti
+      username: "${security.user.name}"  #These two are needed so that the client
+      password: "${security.user.password}" #can register at the protected server api
+      client:
+        metadata:
+          user.name: "${security.user.name}"  #These two are needed so that the server
+          user.password:  "${security.user.password}" #can access the proteceted client endpoints
+security:
+  basic:
+    enabled: true #开启认证
+  user:
+    name: user
+    password: 123456
+management:
+  security:
+    enabled: true
