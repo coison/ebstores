@@ -43,7 +43,7 @@
             <property name="methodNameCalculator" value=""/>
         </javaClientGenerator>
 
-        <table tableName="sys_user" domainObjectName="SysUser" modelType="flat"
+        <table tableName="members" domainObjectName="Members" modelType="flat"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"

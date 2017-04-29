@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coison.dao.MembersMapper" >
+  <resultMap id="BaseResultMap" type="com.coison.model.Members" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="pay_pwd" property="payPwd" jdbcType="CHAR" />
+    <result column="user_type" property="userType" jdbcType="SMALLINT" />
+    <result column="reg_type" property="regType" jdbcType="SMALLINT" />
+    <result column="email" property="email" jdbcType="CHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="secques" property="secques" jdbcType="CHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="constellation" property="constellation" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="job" property="job" jdbcType="INTEGER" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="yn" property="yn" jdbcType="TINYINT" />
+    <result column="record_code" property="recordCode" jdbcType="CHAR" />
+    <result column="reg_gift" property="regGift" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, pay_pwd, user_type, reg_type, email, salt, secques, nick_name,
+    sex, address, birthday, constellation, age, job, sign, img_url, yn, record_code,
+    reg_gift, create_by, create_date, update_by, update_date, remarks, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from members
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from members
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.coison.model.Members" >
+    <!--<selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >-->
+      <!--select LAST_INSERT_ID()-->
+    <!--</selectKey>-->
+    insert into members (username, password, pay_pwd,
+      user_type, reg_type, email,
+      salt, secques, nick_name,
+      sex, address, birthday,
+      constellation, age, job,
+      sign, img_url, yn, record_code,
+      reg_gift, create_by, create_date,
+      update_by, update_date, remarks,
+      del_flag)
+    values (#{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}, #{payPwd,jdbcType=CHAR},
+      #{userType,jdbcType=SMALLINT}, #{regType,jdbcType=SMALLINT}, #{email,jdbcType=CHAR},
+      #{salt,jdbcType=CHAR}, #{secques,jdbcType=CHAR}, #{nickName,jdbcType=VARCHAR},
+      #{sex,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE},
+      #{constellation,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{job,jdbcType=INTEGER},
+      #{sign,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{yn,jdbcType=TINYINT}, #{recordCode,jdbcType=CHAR},
+      #{regGift,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR},
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.coison.model.Members" >
+    <!--<selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      select LAST_INSERT_ID()
+    </selectKey>-->
+    insert into members
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="payPwd != null" >
+        pay_pwd,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="regType != null" >
+        reg_type,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="secques != null" >
+        secques,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="constellation != null" >
+        constellation,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="job != null" >
+        job,
+      </if>
+      <if test="sign != null" >
+        sign,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="yn != null" >
+        yn,
+      </if>
+      <if test="recordCode != null" >
+        record_code,
+      </if>
+      <if test="regGift != null" >
+        reg_gift,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="payPwd != null" >
+        #{payPwd,jdbcType=CHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=SMALLINT},
+      </if>
+      <if test="regType != null" >
+        #{regType,jdbcType=SMALLINT},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=CHAR},
+      </if>
+      <if test="secques != null" >
+        #{secques,jdbcType=CHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="constellation != null" >
+        #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=INTEGER},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="yn != null" >
+        #{yn,jdbcType=TINYINT},
+      </if>
+      <if test="recordCode != null" >
+        #{recordCode,jdbcType=CHAR},
+      </if>
+      <if test="regGift != null" >
+        #{regGift,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.coison.model.Members" >
+    update members
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="payPwd != null" >
+        pay_pwd = #{payPwd,jdbcType=CHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=SMALLINT},
+      </if>
+      <if test="regType != null" >
+        reg_type = #{regType,jdbcType=SMALLINT},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="secques != null" >
+        secques = #{secques,jdbcType=CHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="constellation != null" >
+        constellation = #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="job != null" >
+        job = #{job,jdbcType=INTEGER},
+      </if>
+      <if test="sign != null" >
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="yn != null" >
+        yn = #{yn,jdbcType=TINYINT},
+      </if>
+      <if test="recordCode != null" >
+        record_code = #{recordCode,jdbcType=CHAR},
+      </if>
+      <if test="regGift != null" >
+        reg_gift = #{regGift,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.coison.model.Members" >
+    update members
+    set username = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      pay_pwd = #{payPwd,jdbcType=CHAR},
+      user_type = #{userType,jdbcType=SMALLINT},
+      reg_type = #{regType,jdbcType=SMALLINT},
+      email = #{email,jdbcType=CHAR},
+      salt = #{salt,jdbcType=CHAR},
+      secques = #{secques,jdbcType=CHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      constellation = #{constellation,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      job = #{job,jdbcType=INTEGER},
+      sign = #{sign,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      yn = #{yn,jdbcType=TINYINT},
+      record_code = #{recordCode,jdbcType=CHAR},
+      reg_gift = #{regGift,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--查询所有的用户信息-->
+  <select id="selectAllMembers" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from members
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

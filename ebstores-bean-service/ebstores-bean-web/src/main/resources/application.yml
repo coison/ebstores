@@ -1,0 +1,57 @@
+#Server settings
+server:
+  port: 8080
+  address: localhost
+
+#    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
+#   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
+#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
+spring:
+  profiles:
+    active: dev
+  # HTTP ENCODING
+  http:
+    encoding.charset: UTF-8
+    encoding.enable: true
+    encoding.force: true
+  application:
+    name: abstores-bean-service
+debug: true
+
+---
+#开发环境
+spring:
+  profiles: dev
+  datasource:
+    #schema: import.sql 启动时导入指定的sql
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+          max-active: 20
+          initial-size: 1
+          min-idle: 3
+          max-wait: 60000
+          time-between-eviction-runs-millis: 60000
+          min-evictable-idle-time-millis: 300000
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          filters: stat
+          maxActive: 20
+          initialSize: 1
+          maxWait: 60000
+          minIdle: 1
+          timeBetweenEvictionRunsMillis: 60000
+          minEvictableIdleTimeMillis: 300000
+          validationQuery: select 'x'
+          testWhileIdle: true
+          testOnBorrow: false
+          testOnReturn: false
+          poolPreparedStatements: true
+          maxOpenPreparedStatements: 20
+mybatis:
+  typeAliasesPackage: com.coison.model
+  mapperLocations: classpath*:mapper/*.xml

@@ -7,8 +7,8 @@
 	<artifactId>ebstore-bean-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-		<module>ebstores-bean-dao</module>
 		<module>ebstores-bean-model</module>
+		<module>ebstores-bean-dao</module>
 		<module>ebstores-bean-services</module>
 		<module>ebstores-bean-web</module>
 	</modules>
@@ -88,6 +88,18 @@
 			<!--<groupId>org.springframework.boot</groupId>-->
 			<!--<artifactId>spring-boot-legacy</artifactId>-->
 		<!--</dependency>-->
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>${org.mybatis.generator}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

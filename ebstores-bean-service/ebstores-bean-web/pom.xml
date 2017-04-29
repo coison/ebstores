@@ -25,37 +25,61 @@
         <groupId>com.coison</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ebstores-bean-web</artifactId>
     <packaging>jar</packaging>
 
-    <name>ebstores-bean-web</name>
-    <artifactId>ebstores-bean-web</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.coison</groupId>
+            <artifactId>ebstores-bean-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.coison</groupId>
+            <artifactId>ebstores-bean-dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.coison</groupId>
+            <artifactId>ebstores-bean-services</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
-    <!--<build>-->
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.mortbay.jetty</groupId>-->
-                <!--<artifactId>maven-jetty-plugin</artifactId>-->
-                <!--<version>6.1.7</version>-->
-                <!--<configuration>-->
-                    <!--<connectors>-->
-                        <!--<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">-->
-                            <!--<port>8888</port>-->
-                            <!--<maxIdleTime>30000</maxIdleTime>-->
-                        <!--</connector>-->
-                    <!--</connectors>-->
-                    <!--<webAppSourceDirectory>${project.build.directory}/${pom.artifactId}-${pom.version}-->
-                    <!--</webAppSourceDirectory>-->
-                    <!--<contextPath>/</contextPath>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
+    <!--&lt;!&ndash; profiles 部署环境 &ndash;&gt;-->
+    <!--<profiles>-->
+        <!--&lt;!&ndash; 打包开发机 &ndash;&gt;-->
+        <!--<profile>-->
+            <!--<id>bean-dev</id>-->
+            <!--<activation>-->
+                <!--<property>-->
+                    <!--<name>wireless.dev</name>-->
+                    <!--<value>dev</value>-->
+                <!--</property>-->
+            <!--</activation>-->
+            <!--<build>-->
+                <!--&lt;!&ndash;JAR NAME&ndash;&gt;-->
+                <!--<finalName>${project.artifactId}-${project.version}</finalName>-->
+                <!--<plugins>-->
+                        <!--<plugin>-->
+                            <!--<groupId>org.springframework.boot</groupId>-->
+                            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                        <!--</plugin>-->
+                <!--</plugins>-->
+                <!--<resources>-->
+                    <!--<resource>-->
+                        <!--<directory>${profiles.dir}/dev</directory>-->
+                    <!--</resource>-->
+                <!--</resources>-->
+            <!--</build>-->
+        <!--</profile>-->
+    <!--</profiles>-->
 
     <build>
         <!-- jar名称 -->
-        <finalName>abstore-bean-service</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -64,12 +88,5 @@
         </plugins>
     </build>
 
-    <dependencies>
-        <!--dependency>
-      <groupId>com.coison</groupId>
-      <artifactId>[the artifact id of the block to be mounted]</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency-->
-    </dependencies>
 
 </project>
