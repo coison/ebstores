@@ -24,7 +24,7 @@ spring:
      encoding:
       enabled: true
   application:
-     name: spring boot admin
+     name: 注册中心
   boot:
     admin:
       turbine:
@@ -35,12 +35,13 @@ spring:
         endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,activiti
       username: "${security.user.name}"  #These two are needed so that the client
       password: "${security.user.password}" #can register at the protected server api
-      client:
-        metadata:
-          user.name: "${security.user.name}"  #These two are needed so that the server
-          user.password:  "${security.user.password}"
-        name: localhost
-      url: http://${eureka.instance.hostname}:${server.port} #can access the proteceted client endpoints
+#      client:
+#        metadata:
+#          user.name: "${security.user.name}"  #These two are needed so that the server
+#          user.password:  "${security.user.password}"
+#        name: localhost
+      url: http://${eureka.instance.hostname}:${server.port}
+      context-path: /ebstore #can access the proteceted client endpoints
 security:
   basic:
     enabled: true #开启认证
@@ -54,7 +55,7 @@ eureka:
   client:
     registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://${eureka.instance.hostname}:${service.port}}/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://${eureka.instance.hostname}:${server.port}}/eureka/
 management:
   security:
     enabled: true
