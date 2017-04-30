@@ -26,7 +26,6 @@ public class EurekaServiceApplication {
 	}
 
 	@Profile("secure")
-	// tag::configuration-spring-security[]
 	@Configuration
 	public static class SecurityConfig extends WebSecurityConfigurerAdapter {
 		@Override
