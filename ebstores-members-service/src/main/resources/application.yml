@@ -1,36 +1,36 @@
 # setting clent server
 server:
-  port: 8083
-# setting project
-info:
-  verison: @project.version@
-  owner: coison
+  port: 8080
 #    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
 #   测试环境：java -jar my-spring-boot.j ar --spring.profiles.active=test
 #   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
 spring:
+  http:
+    encoding.charset: UTF-8
+    encoding.force: true
+    encoding:
+      enabled: true
   profiles:
     active: dev
 debug: true
+# setting project
+info:
+  verison: @project.version@
+  owner: coison
 
 ---
 # 开发环境
 spring:
   profiles: dev
-  http:
-      encoding.charset: UTF-8
-      encoding.force: true
-      encoding:
-        enabled: true
   application:
-      name: @project.name@
+    name: @project.artifactId@
   boot:
-      admin:
-        client:
-          enabled: true
-        url: http://localhost:8761
-        username: ${security.user.name}
-        password: ${security.user.password}
+    admin:
+      client:
+        enabled: true
+      url: http://localhost:8761
+      username: ${security.user.name}
+      password: ${security.user.password}
 security:
   basic:
     enabled: true
@@ -40,3 +40,11 @@ security:
 management:
   security:
     enabled: false
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    hostname: localhost
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
