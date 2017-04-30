@@ -51,17 +51,22 @@ public class EurekaServiceApplication {
 	}
 	// end::configuration-spring-security[]
 
+	/***
+	 * 发送关于下载/脱机应用程序的提醒，它将通知的发送委托给另一个通知程序
+	 * 默认情况下，当注册的应用程序更改为DOWN或时，将触发提醒OFFLINE。你可以通过改变这个行为setReminderStatuses()。当状态更改为非触发状态或相关应用程序取消注册时，提醒结束。
+	 */
 	@Configuration
 	public static class NotifierConfig {
+
 		@Bean
 		@Primary
 		public RemindingNotifier remindingNotifier() {
 			RemindingNotifier notifier = new RemindingNotifier(filteringNotifier(loggerNotifier()));
-			notifier.setReminderPeriod(TimeUnit.SECONDS.toMillis(10));
+			notifier.setReminderPeriod(TimeUnit.SECONDS.toMillis(5)); //	提醒将每5分钟发送一次。
 			return notifier;
 		}
 
-		@Scheduled(fixedRate = 1_000L)
+		@Scheduled(fixedRate = 10_000L)  //计划每1秒发送一次到期提醒。
 		public void remind() {
 			remindingNotifier().sendReminders();
 		}

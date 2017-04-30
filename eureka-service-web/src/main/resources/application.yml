@@ -1,17 +1,20 @@
 server:
   port: 8761
-
 #    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
 #   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
 #   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
-
 spring:
   profiles:
     active: dev
 debug: true
-
+logging:
+  file: "target/boot-admin.log"
+# setting project
+info:
+  verison: @project.version@
+  owner: coison
 ---
-#测试环境
+#开发环境
 spring:
   profiles: dev
   # HTTP ENCODING
@@ -24,6 +27,10 @@ spring:
      name: spring boot admin
   boot:
     admin:
+      turbine:
+        clusters: default
+        location: turbine
+        enabled: false
       routes:
         endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,activiti
       username: "${security.user.name}"  #These two are needed so that the client
@@ -31,14 +38,23 @@ spring:
       client:
         metadata:
           user.name: "${security.user.name}"  #These two are needed so that the server
-          user.password:  "${security.user.password}" #can access the proteceted client endpoints
+          user.password:  "${security.user.password}"
+        name: localhost
+      url: http://${eureka.instance.hostname}:${server.port} #can access the proteceted client endpoints
 security:
   basic:
     enabled: true #开启认证
   user:
     name: user
     password: 123456
-
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    hostname: localhost
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://${eureka.instance.hostname}:${service.port}}/eureka/
 management:
   security:
     enabled: true
