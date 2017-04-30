@@ -1,0 +1,45 @@
+# setting clent server
+server:
+  port: 8084
+# setting project
+info:
+  verison: @project.version@
+  owner: coison
+  component: center core service
+
+#    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
+#   测试环境：java -jar my-spring-boot.j ar --spring.profiles.active=test
+#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
+
+spring:
+  profiles:
+    active: dev
+debug: true
+
+---
+# 开发环境
+spring:
+  profiles: dev
+  http:
+      encoding.charset: UTF-8
+      encoding.force: true
+      encoding:
+        enabled: true
+  application:
+      name: @project.artifactId@
+  boot:
+      admin:
+        client:
+          enabled: true
+        url: http://localhost:8761
+        username: ${security.user.name}
+        password: ${security.user.password}
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: 123456
+management:
+  security:
+    enabled: false
