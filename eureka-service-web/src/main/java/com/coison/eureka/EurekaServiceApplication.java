@@ -57,7 +57,6 @@ public class EurekaServiceApplication {
 	 */
 	@Configuration
 	public static class NotifierConfig {
-
 		@Bean
 		@Primary
 		public RemindingNotifier remindingNotifier() {
