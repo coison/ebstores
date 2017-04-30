@@ -1,20 +1,20 @@
-# setting service
+# setting clent server
 server:
-  port: 8080
-# ÏîÄ¿ĞÅÏ¢
-info.verison: @project.version@
-info.owner: coison
-#    Ä¬ÈÏµÄprofileÎªdev£¬ÆäËû»·¾³Í¨¹ıÖ¸¶¨Æô¶¯²ÎÊıÊ¹ÓÃ²»Í¬µÄprofile£¬±ÈÈç£º
-#   ²âÊÔ»·¾³£ºjava -jar my-spring-boot.jar --spring.profiles.active=test
-#   Éú²ú»·¾³£ºjava -jar my-spring-boot.jar --spring.profiles.active=prod
-
+  port: 8083
+# setting project
+info:
+  verison: @project.version@
+  owner: coison
+#    é»˜è®¤çš„profileä¸ºdevï¼Œå…¶ä»–ç¯å¢ƒé€šè¿‡æŒ‡å®šå¯åŠ¨å‚æ•°ä½¿ç”¨ä¸åŒçš„profileï¼Œæ¯”å¦‚ï¼š
+#   æµ‹è¯•ç¯å¢ƒï¼šjava -jar my-spring-boot.j ar --spring.profiles.active=test
+#   ç”Ÿäº§ç¯å¢ƒï¼šjava -jar my-spring-boot.jar --spring.profiles.active=prod
 spring:
   profiles:
     active: dev
 debug: true
 
 ---
-#¿ª·¢»·¾³
+# å¼€å‘ç¯å¢ƒ
 spring:
   profiles: dev
   http:
@@ -23,17 +23,17 @@ spring:
       encoding:
         enabled: true
   application:
-      name: @project.description@
+      name: @project.name@
   boot:
       admin:
         client:
-          enabled: true #ÆôÓÃSpring Boot Admin Client
-        url: http://localhost:8761 #×¢²áÖĞĞÄµØÖ·
+          enabled: true
+        url: http://localhost:8761
         username: ${security.user.name}
         password: ${security.user.password}
 security:
   basic:
-    enabled: false #¿ªÆôÈÏÖ¤
+    enabled: true
   user:
     name: user
     password: 123456
