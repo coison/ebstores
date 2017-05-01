@@ -1,0 +1,23 @@
+server:
+  port: 8888
+  address: localhost
+#  资源获取遵循以下规则：
+#  /{application}/{profile}[/{label}]
+#  /{application}-{profile}.yml
+#  /{label}/{application}-{profile}.yml
+#  /{application}-{profile}.properties
+#  /{label}/{application}-{profile}.properties
+spring:
+  application:
+    name: configserver
+  #使用本地的配置文件
+#  profiles:
+#    active: native
+  #使用git服务器配置
+  cloud:
+    config:
+      uri: http://localhost:8888
+      server:
+        git:
+          uri: https://github.com/coison/config-repo.git
+          basedir: target/config # git的配置文件会加载到本地的目录
