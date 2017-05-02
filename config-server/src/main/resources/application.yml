@@ -1,23 +1,52 @@
+# 设置启动路径和端口
 server:
   port: 8888
   address: localhost
-#  资源获取遵循以下规则：
-#  /{application}/{profile}[/{label}]
-#  /{application}-{profile}.yml
-#  /{label}/{application}-{profile}.yml
-#  /{application}-{profile}.properties
-#  /{label}/{application}-{profile}.properties
+
+# 描述信息
+info:
+    application:
+      name: 云配置中心
+      version: @project.version@
+      owner: maiyar.cn
+      author: coison
+
+# 上下文信息
+management:
+  address: localhost
+#  context-path: /
+
 spring:
   application:
-    name: configserver
+    name: @project.artifactId@
+  http:
+     encoding.charset: UTF-8
+     encoding.force: true
+     encoding:
+      enabled: true
   #使用本地的配置文件
 #  profiles:
 #    active: native
   #使用git服务器配置
   cloud:
     config:
-      uri: http://localhost:8888
       server:
         git:
-          uri: https://github.com/coison/config-repo.git
-          basedir: target/config # git的配置文件会加载到本地的目录
+          uri: https://git.oschina.net/maiyar/config-repo.git
+          search-paths: ebstores
+          basedir: target/config
+
+# 配置注册spring boot admin
+  boot:
+    admin:
+      url: http://localhost:8761
+      client:
+        prefer-ip: true
+  mvc:
+    async:
+      request-timeout: -1
+
+# 安全验证
+security:
+  user:
+    password: 123456
