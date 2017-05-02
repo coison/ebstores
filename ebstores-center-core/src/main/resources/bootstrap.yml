@@ -1,0 +1,12 @@
+#spring:
+#  application:
+#    name: ebstores-center-core
+#  cloud:
+#    config:
+#      uri:  //localhost:${config.port:8888}
+#      profile: dev                  #配置名称
+#      name: ebstores                 #最后定向到文件：ebstores-dev.yml.[properties|yml|
+#      username: user
+#      password: 1234567890
+#server:
+#  port: 8081

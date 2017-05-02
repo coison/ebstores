@@ -28,30 +28,6 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-          max-active: 20
-          initial-size: 1
-          min-idle: 3
-          max-wait: 60000
-          time-between-eviction-runs-millis: 60000
-          min-evictable-idle-time-millis: 300000
-          test-while-idle: true
-          test-on-borrow: false
-          test-on-return: false
-          filters: stat
-          maxActive: 20
-          initialSize: 1
-          maxWait: 60000
-          minIdle: 1
-          timeBetweenEvictionRunsMillis: 60000
-          minEvictableIdleTimeMillis: 300000
-          validationQuery: select 'x'
-          testWhileIdle: true
-          testOnBorrow: false
-          testOnReturn: false
-          poolPreparedStatements: true
-          maxOpenPreparedStatements: 20
 mybatis:
   typeAliasesPackage: com.coison.model
   mapperLocations: classpath*:mapper/*.xml

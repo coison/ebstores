@@ -1,5 +1,6 @@
 server:
   port: 8761
+  address: localhost
 #    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
 #   测试环境：java -jar my-spring-boot.jar --spring.profiles.active=test
 #   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
@@ -7,15 +8,18 @@ spring:
   profiles:
     active: dev
 debug: true
-logging:
-  file: "target/boot-admin.log"
 # setting project
 info:
-  verison: @project.version@
-  owner: coison
+  name: @project.name@
+  version: @project.version@
+  owner: maiyar.cn
+  author: coison
 ---
 #开发环境
 spring:
+  cloud:
+    config:
+      enabled: false
   profiles: dev
   # HTTP ENCODING
   http:
@@ -24,38 +28,51 @@ spring:
      encoding:
       enabled: true
   application:
-     name: 注册中心
+     name: @project.name@
   boot:
     admin:
       turbine:
         clusters: default
         location: turbine
-        enabled: false
-      routes:
+#        enabled: true
+      routes:  # zuul
         endpoints: env,metrics,trace,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,activiti
-      username: "${security.user.name}"  #These two are needed so that the client
-      password: "${security.user.password}" #can register at the protected server api
+#      username: "${security.user.name}"  #These two are needed so that the client
+#      password: "${security.user.password}" #can register at the protected server api
+      url: http://${server.address}:${server.port}  # 服务注册地址
+#      api-path: "api/applications" # 注册端点的Http路径在您的管理服务器上
+#      monitor:
+#        period: 10  # 重复注册的间隔（以ms为单位）。
 #      client:
+#        prefer-ip: true # 使用ip-address，而不是被猜测的url中的主机名 它被使用。否则InetAddress.getLocalHost()将使用返回的IP地址。
+#        enabled: true # 启用S​​pring Boot Admin Client。
+#        name:  @project.name@ # 要注册的名称
 #        metadata:
 #          user.name: "${security.user.name}"  #These two are needed so that the server
-#          user.password:  "${security.user.password}"
-#        name: localhost
-      url: http://${eureka.instance.hostname}:${server.port}
-      context-path: /ebstore #can access the proteceted client endpoints
+#          user.password: "${security.user.password}"
+#        health-url:  # Client-health-url注册。如果可访问的URL不同（例如Docker），可以被覆盖。在注册表中必须是唯一的
+#      auto-registration: true   # 如果设置为true，则在应用程序准备就绪后自动计划定期注册应用程序任务
+#      register-once: true #如果设置为true，客户端将仅注册一个管理服务器（按照定义spring.boot.admin.url）。如果该管理服务器关闭，将自动向下一个管理服务器注册。如果为false，将注册所有管理服务器。
+      context-path: /admin
 security:
-  basic:
-    enabled: true #开启认证
   user:
     name: user
     password: 123456
+  basic:
+    enabled: false
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
     hostname: localhost
+    prefer-ip-address: true
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://${eureka.instance.hostname}:${server.port}}/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8762}/eureka/
+    fetch-registry: false #为true时，可以启动，但报异常：Cannot execute request on any known server
+    register-with-eureka: false #是否将eureka自身作为应用注册到eureka注册中心
 management:
   security:
-    enabled: true
+    enabled: false

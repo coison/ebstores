@@ -17,7 +17,7 @@ public class TestController {
 
     @RequestMapping("/")
     String home() {
-        return "Hello World!";
+        return "用户服务";
     }
 
     @RequestMapping("/hello/{myName}")
@@ -25,11 +25,11 @@ public class TestController {
         return "Hello "+myName+"!!!";
     }
 
-    @Value("${server.port}")
-    String port;
-
-    @RequestMapping("/hi")
-    public String home(@RequestParam String name) {
-        return "hi "+name+",i am from port:" + port;
-    }
+//    @Value("${server.port}")
+//    String port;
+//
+//    @RequestMapping("/hi")
+//    public String home(@RequestParam String name) {
+//        return "hi "+name+",i am from port:" + port;
+//    }
 }

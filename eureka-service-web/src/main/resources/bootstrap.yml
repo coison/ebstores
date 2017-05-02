@@ -1,0 +1,10 @@
+#spring:
+#  application:
+#    name: eureka-rs
+#  cloud:
+#    config:
+#      uri:  http://localhost:8888
+#      name: ebstores                #最后定向到文件：ebstores-rs.[properties|yml|
+#      profile: rs                  #配置名称
+#      discovery:
+#        enabled: true

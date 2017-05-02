@@ -1,50 +1,41 @@
-# setting clent server
-server:
-  port: 8080
-#    默认的profile为dev，其他环境通过指定启动参数使用不同的profile，比如：
-#   测试环境：java -jar my-spring-boot.j ar --spring.profiles.active=test
-#   生产环境：java -jar my-spring-boot.jar --spring.profiles.active=prod
-spring:
-  http:
-    encoding.charset: UTF-8
-    encoding.force: true
-    encoding:
-      enabled: true
-  profiles:
-    active: dev
-debug: true
-# setting project
+# 配置信息
 info:
-  verison: @project.version@
-  owner: coison
-
----
-# 开发环境
-spring:
-  profiles: dev
   application:
-    name: @project.artifactId@
+    name: 用户服务
+    version: 1.0-SNAPSHOT
+    owner: maiyar.cn
+    author: Coison
+spring:
+  application:
+    name: @project.name@
+  http:
+     encoding.charset: UTF-8
+     encoding.force: true
+     encoding:
+      enabled: true
   boot:
     admin:
+      url: http://localhost:8761  # 服务注册地址
       client:
-        enabled: true
-      url: http://localhost:8761
-      username: ${security.user.name}
-      password: ${security.user.password}
-security:
-  basic:
-    enabled: true
-  user:
-    name: user
-    password: 123456
+        prefer-ip: true # 使用ip-address，而不是被猜测的url中的主机名 它被使用。否则InetAddress.getLocalHost()将使用返回的IP地址。
+      auto-registration: true   # 如果设置为true，则在应用程序准备就绪后自动计划定期注册应用程序任务
+      register-once: false #如果设置为true，客户端将仅注册一个管理服务器（按照定义spring.boot.admin.url）。如果该管理服务器关闭，将自动向下一个管理服务器注册。如果为false，将注册所有管理服务器。
+  mvc:
+    async:
+      request-timeout: -1
 management:
+  address: localhost
   security:
     enabled: false
+#Eureka 服务注册与发现
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 10
-    hostname: localhost
+    healthCheckUrl: true
+    leaseRenewalIntervalInSeconds: 3
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
-    registryFetchIntervalSeconds: 5
+    registryFetchIntervalSeconds: 3
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+      defaultZone: http://localhost:8762/eureka/
+

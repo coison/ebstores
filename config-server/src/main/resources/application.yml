@@ -39,6 +39,8 @@ spring:
 # 配置注册spring boot admin
   boot:
     admin:
+      username: user
+      password: 123456
       url: http://localhost:8761
       client:
         prefer-ip: true

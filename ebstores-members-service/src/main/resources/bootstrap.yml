@@ -1,0 +1,10 @@
+#server:
+#  port: 8085
+#spring:
+#  application:
+#    name: ebstores-members-service
+#  cloud:
+#    config:
+#      uri:  http://localhost:8888
+#      name: server                #最后定向到文件：ebstores-rs.[properties|yml|
+#      profile: config                  #配置名称
